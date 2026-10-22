@@ -32,7 +32,7 @@ sudo apt install devscripts debhelper dh-make build-essential -y
 Launchpad requires cryptographically signed packages. Generate a new GPG key:
 gpg --gen-key
 
-Follow the prompts (Real Name: ********, Email: ********, and Passphrase).
+Follow the prompts (Real Name: DICKMAN PIOUS, Email: ********, and Passphrase).
 
 Get your new Key ID:
 gpg --list-secret-keys --keyid-format LONG
@@ -42,7 +42,7 @@ gpg --list-secret-keys --keyid-format LONG
 Send the key to the Ubuntu Keyserver:
 gpg --keyserver keyserver.ubuntu.com --send-keys YOUR_KEY_ID
 
-Go to https://launchpad.net/~yourusername/+editpgpkeys, paste your key ID, and confirm via the email Launchpad sends you.
+Go to https://launchpad.net/~dkpious31/+editpgpkeys, paste your key ID, and confirm via the email Launchpad sends you.
 
 ---
 
@@ -50,15 +50,15 @@ Go to https://launchpad.net/~yourusername/+editpgpkeys, paste your key ID, and c
 
 Create the following folder structure for your package:
 
-dickmanpious-1.0/
-├── debian/
-│   ├── changelog      # Version history and distribution targeting
-│   ├── control        # Package metadata, dependencies, and description
-│   ├── rules          # The Makefile that tells dh how to build the package
-│   └── source/
-│       └── format     # Source format (3.0 quilt)
-├── index.js           # The core application logic
-└── README.md          # This file
+- `dickmanpious-1.0/` (Main folder)
+  - `debian/` (Packaging configuration folder)
+    - `changelog` (Version history and distribution targeting)
+    - `control` (Package metadata, dependencies, and description)
+    - `rules` (The Makefile that tells dh how to build the package)
+    - `source/`
+      - `format` (Source format: 3.0 quilt)
+  - `index.js` (The core application logic)
+  - `README.md` (This file)
 
 ---
 
@@ -74,7 +74,7 @@ Paste:
 Source: dickmanpious
 Section: misc
 Priority: optional
-Maintainer: ******** <********>
+Maintainer: DICKMAN PIOUS <********>
 Build-Depends: debhelper-compat (= 13)
 Standards-Version: 4.6.2
 
@@ -103,7 +103,7 @@ dickmanpious (1.0-1) jammy; urgency=medium
 
   * Initial release.
 
- -- ******** <********>  Thu, 22 Oct 2026 12:00:00 +0000
+ -- DICKMAN PIOUS <********>  Thu, 22 Oct 2026 12:00:00 +0000
 
 5. Create debian/source/format:
 echo "3.0 (quilt)" > debian/source/format
@@ -118,7 +118,7 @@ cd dickmanpious-1.0
 ## ⚙️ Step 6: Build and Sign
 
 Set your environment variables:
-export DEBFULLNAME="********"
+export DEBFULLNAME="DICKMAN PIOUS"
 export DEBEMAIL="********"
 export DEBKEY="YOUR_KEY_ID"
 
@@ -133,14 +133,14 @@ debuild -S -sa
 
 Create a dput.cf configuration file:
 cd ..
-echo "[yourusername-ppa]
+echo "[dkpious31-ppa]
 fqdn = ppa.launchpad.net
 method = ftp
-incoming = ~yourusername/ubuntu/ppa/
+incoming = ~dkpious31/ubuntu/ppa/
 login = anonymous" > dput.cf
 
 Upload the signed .changes file:
-dput -c dput.cf yourusername-ppa dickmanpious_1.0-1_source.changes
+dput -c dput.cf dkpious31-ppa dickmanpious_1.0-1_source.changes
 
 Wait 5-10 minutes for Launchpad to build and publish the package. You will receive an email when it's done.
 
@@ -150,7 +150,7 @@ Wait 5-10 minutes for Launchpad to build and publish the package. You will recei
 
 Once Launchpad shows a green checkmark (Published), you can install it on any Ubuntu machine:
 
-sudo add-apt-repository ppa:yourusername/ppa
+sudo add-apt-repository ppa:dkpious31/ppa
 sudo apt update
 sudo apt install dickmanpious
 
@@ -170,13 +170,13 @@ This project was not just about writing code; it was about understanding the Lin
 
 All packages uploaded to this PPA are cryptographically signed.
 * GPG Fingerprint: ********
-* Launchpad PPA: https://launchpad.net/~yourusername/+archive/ubuntu/ppa
+* Launchpad PPA: https://launchpad.net/~dkpious31/+archive/ubuntu/ppa
 
 ## 👨‍💻 Author
 
-YOUR NAME
-- GitHub: @yourusername
-- Launchpad: yourusername
+**DICKMAN PIOUS**
+- GitHub: [@dickmanpiouscyber](https://github.com/dickmanpiouscyber)
+- Launchpad: [dkpious31](https://launchpad.net/~dkpious31)
 
 ## 📄 License
 
